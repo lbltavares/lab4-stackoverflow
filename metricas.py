@@ -14,15 +14,15 @@ fieldnames = ["url", "title", "state", "locked", "id", "number", "title", "label
 
 
 erros = 0
+key = os.environ["key"]
+
 
 # Obtem as perguntas relacionadas de uma issue
-
-
 def get_perguntas_relacionadas(issue):
     global erros
     body = issue["url"]
-    body = "/".join(body.split('/')[4:])
-    URL = f'https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&body={body}&site=stackoverflow'
+    body = "/".join(body.split("/")[4:]).split("/")[0]
+    URL = f'https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&q={body}&site=stackoverflow&key={key}'
     tentativas = 0
     while True:
         try:
