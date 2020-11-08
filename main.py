@@ -8,7 +8,9 @@ from csv import DictReader, DictWriter
 
 REPOS_FILE = "repos.csv"
 ISSUES_FILE = "issues.csv"
-TOKEN = os.environ["TOKEN"]
+TOKEN = None
+if "TOKEN" in os.environ:
+    TOKEN = os.environ["TOKEN"]
 
 fieldnames = ["url", "title", "state", "locked", "id", "number", "title", "labels", "assignee", "comments",
               "created_at", "updated_at", "closed_at", "author_association", "active_lock_reason", "performed_via_github_app"]
